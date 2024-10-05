@@ -6,6 +6,11 @@ function process_argv() {
 }
 
 function studentPortal(studentId) {
+    if (studentList.id === undefined) {
+        return "Mahasiswa tidak terdaftar"
+    } else if (studentList.status === false) {
+        return `Mahasiswa dengan id ${studentId} sudah tidak terdaftar`
+    }
     const studentList = [{
             id: "2010310164",
             name: "Rakanda Pangeran Nasution",
@@ -67,25 +72,32 @@ function studentPortal(studentId) {
             status: false,
         },
     ];
-    return {}; // TODO: replace this
+    // let credit = getCredits(gpa)
+    // let subject = getSubjects(credits)
+
+    // return hasil {
+    //     id: studentId,
+    //     name: studentId.name,
+    //     gpa: studentList.gpa,
+    //     credits: credit,
+    //     subjects:
+    // };
 }
 
 function getCredits(gpa) {
-    let sks
     if (gpa > 2.99) {
-        sks = 24
+        return 24
     } else if (gpa >= 2.5 && gpa <= 2.99) {
-        sks = 21
+        return 21
     } else if (gpa >= 2 && gpa <= 2.49) {
-        sks = 18
+        return 18
     } else if (gpa >= 1.5 && gpa <= 1.99) {
-        sks = 15
+        return 15
     } else if (gpa >= 0 && gpa <= 1.49) {
-        sks = 12
+        return 12
     } else {
         return 'invalid sks'
     }
-    return sks
 }
 
 function getSubjects(credits) {
