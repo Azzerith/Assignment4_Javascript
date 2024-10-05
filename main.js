@@ -6,11 +6,7 @@ function process_argv() {
 }
 
 function studentPortal(studentId) {
-    if (studentList.id === undefined) {
-        return "Mahasiswa tidak terdaftar"
-    } else if (studentList.status === false) {
-        return `Mahasiswa dengan id ${studentId} sudah tidak terdaftar`
-    }
+
     const studentList = [{
             id: "2010310164",
             name: "Rakanda Pangeran Nasution",
@@ -73,6 +69,12 @@ function studentPortal(studentId) {
         },
     ];
     const student = studentList.find(mahasiswa => studentId === mahasiswa.id)
+    if (student.id === undefined) {
+        return "Mahasiswa tidak terdaftar"
+    } else if (student.status === false) {
+        return `Mahasiswa dengan id ${studentId} sudah tidak aktif`
+    }
+
 
     // let hasil = {}
 
@@ -81,8 +83,8 @@ function studentPortal(studentId) {
     //     let subject = getSubjects(credit)
 
     // });
-    let credit = getCredits(gpa)
-    let subject = getSubjects(credits)
+    let credit = getCredits(student.gpa)
+    let subject = getSubjects(credit)
 
     return hasil = {
         id: studentId,
@@ -166,10 +168,14 @@ function getSubjects(credits) {
             totalCredits += subject.credit
         }
     })
-    if (subject.status === "pilihan" && totalCredits + subject.credit <= credits) {
-        selectedSubject.push(subject)
-        totalCredits += subject.credit
-    }
+    let subjectPilihan = subjectsList.sort((a, b) => b.credit - a.credit)
+    subjectsList.forEach(subject => {
+        if (subject.status === "pilihan" && totalCredits + subject.credit <= credits) {
+            selectedSubject.push(subject)
+            totalCredits += subject.credit
+        }
+    })
+
     return selectedSubject; // TODO: replace this
 }
 
