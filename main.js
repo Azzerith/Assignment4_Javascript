@@ -69,7 +69,8 @@ function studentPortal(studentId) {
         },
     ];
     const student = studentList.find(mahasiswa => studentId === mahasiswa.id)
-    if (student.id === undefined) {
+
+    if (student === undefined) {
         return "Mahasiswa tidak terdaftar"
     } else if (student.status === false) {
         return `Mahasiswa dengan id ${studentId} sudah tidak aktif`
