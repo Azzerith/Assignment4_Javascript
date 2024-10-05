@@ -72,6 +72,14 @@ function studentPortal(studentId) {
             status: false,
         },
     ];
+
+    let hasil = {}
+
+    studentList.forEach(id => {
+        let credit = getCredits(gpa)
+        let subject = getSubjects(credit)
+
+    });
     // let credit = getCredits(gpa)
     // let subject = getSubjects(credits)
 
@@ -82,6 +90,7 @@ function studentPortal(studentId) {
     //     credits: credit,
     //     subjects:
     // };
+    return hasil;
 }
 
 function getCredits(gpa) {
@@ -101,6 +110,7 @@ function getCredits(gpa) {
 }
 
 function getSubjects(credits) {
+
     const subjectsList = [{
             subjectName: "Ilmu Politik",
             credit: 3,
@@ -147,8 +157,19 @@ function getSubjects(credits) {
             status: "pilihan",
         },
     ];
-
-    return []; // TODO: replace this
+    let totalCredits = 0
+    let selectedSubject = []
+    subjectsList.forEach(subject => {
+        if (subject.status === "wajib" && totalCredits + subject.credit <= credits) {
+            selectedSubject.push(subject)
+            totalCredits += subject.credit
+        }
+    })
+    if (subject.status === "pilihan" && totalCredits + subject.credit <= credits) {
+        selectedSubject.push(subject)
+        totalCredits += subject.credit
+    }
+    return selectedSubject; // TODO: replace this
 }
 
 // Dilarang menghapus/mangganti code dibawah ini!!!
