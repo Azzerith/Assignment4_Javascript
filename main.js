@@ -6,7 +6,6 @@ function process_argv() {
 }
 
 function studentPortal(studentId) {
-
     const studentList = [{
             id: "2010310164",
             name: "Rakanda Pangeran Nasution",
@@ -170,7 +169,7 @@ function getSubjects(credits) {
         }
     })
     let subjectPilihan = subjectsList.sort((a, b) => b.credit - a.credit)
-    subjectsList.forEach(subject => {
+    subjectPilihan.forEach(subject => {
         if (subject.status === "pilihan" && totalCredits + subject.credit <= credits) {
             selectedSubject.push(subject)
             totalCredits += subject.credit
