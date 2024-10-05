@@ -72,25 +72,26 @@ function studentPortal(studentId) {
             status: false,
         },
     ];
+    const student = studentList.find(mahasiswa => studentId === mahasiswa.id)
 
-    let hasil = {}
+    // let hasil = {}
 
-    studentList.forEach(id => {
-        let credit = getCredits(gpa)
-        let subject = getSubjects(credit)
+    // studentList.forEach(id => {
+    //     let credit = getCredits(gpa)
+    //     let subject = getSubjects(credit)
 
-    });
-    // let credit = getCredits(gpa)
-    // let subject = getSubjects(credits)
+    // });
+    let credit = getCredits(gpa)
+    let subject = getSubjects(credits)
 
-    // return hasil {
-    //     id: studentId,
-    //     name: studentId.name,
-    //     gpa: studentList.gpa,
-    //     credits: credit,
-    //     subjects:
-    // };
-    return hasil;
+    return hasil = {
+        id: studentId,
+        name: student.name,
+        gpa: student.gpa,
+        credits: credit,
+        subjects: subject
+    };
+    // return hasil;
 }
 
 function getCredits(gpa) {
